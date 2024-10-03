@@ -1,0 +1,11 @@
+{
+    "cookies": [],
+    "headers": {
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en",
+        "User-Agent": "Scrapy/2.8.0 (+https://scrapy.org)"
+    },
+    "lua_source": "\n            function main(splash, args)\n            assert(splash:go(\"https://iftp.chinamoney.com.cn/chinese/forsddshis/index.html?dataType=6\"))\n            assert(splash:wait(25))\n            splash:evaljs(\"document.getElementById('sdds-his-start-date').removeAttribute('readonly');\")\n            splash:evaljs(\"document.getElementById('sdds-his-end-date').removeAttribute('readonly');\")\n            splash:evaljs(\"document.getElementById('sdds-his-start-date').value='2022-01-01';\")\n            splash:evaljs(\"document.getElementById('sdds-his-end-date').value='2022-12-31';\")\n            splash:runjs(\"querySdds(1);\")\n            assert(splash:wait(25))\n            return {\n                html = splash:html()\n            }\n            end\n        ",
+    "url": "https://iftp.chinamoney.com.cn/chinese/forsddshis/index.html?dataType=6",
+    "wait": 10
+}
